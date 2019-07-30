@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js'></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Mp3Player</title>
+</head>
+
+<body>
+    <div id="mp3player">
+        <div class="left-container">
+            <div class="add-album">
+                <h3>我的專輯</h3>
+                <button><i class="material-icons">add</i></button>
+            </div>
+            <ul class="album-list">
+                <li class="album-item">
+                    <span>Jessica</span>
+                </li>
+                <li class="album-item album-active">
+                    <span>YouTube Music</span>
+                </li>
+                <li class="album-item">
+                    <span>November</span>
+                </li>
+                <li class="album-item">
+                    <span>Space Hunter</span>
+                </li>
+                <li class="album-item">
+                    <span>The Path Starts Here</span>
+                </li>
+                <li class="album-item">
+                    <span>If I Had a Chicken</span>
+                </li>
+                <li class="album-item">
+                    <span>If I Had a Chicken</span>
+                </li>
+                <li class="album-item">
+                    <span>If I Had a Chicken</span>
+                </li>
+                <li class="album-item">
+                    <span>If I Had a Chicken</span>
+                </li>
+                <li class="album-item">
+                    <span>If I Had a Chicken</span>
+                </li>
+            </ul>
+            <div class="current-music-box">
+                <div>
+                    <h3>現在撥放</h3>
+                    <span>YouTube Music</span>
+                </div>
+                <span class="current-music-name">Write You</span>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="album-content-container">
+                <div>
+                    <i class="material-icons">
+                        search
+                    </i>
+                </div>
+                <div class="album-detail-content">
+                    <img src="https://i.ytimg.com/vi/zA0tk8iN80U/mqdefault.jpg" alt="">
+                    <div>
+                        <h1 class="album-name">YouTube Music</h1>
+                        <p class="album-create-day">YouTube頻道<br>於2019.7.22創建</p>
+                    </div>
+                </div>
+            </div>
+            <div class="music-list-container">
+                <ul class="music-list">
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item music-active">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <h3 class="music-index">1</h3>
+                        <span class="music-name">
+                            Jazz Apricot
+                        </span>
+                        <span class="music-time">
+                            1:52
+                        </span>
+                        <div class="music-btn">
+                            <i class="material-icons">
+                                add
+                            </i>
+                            <i class="material-icons">
+                                remove
+                            </i>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="player-container">
+                <div class="slider-bar">
+                    <span class="slider-btn"></span>
+                </div>
+                <div class="music-control-box">
+                    <div class="music-control-list">
+                        <i class="material-icons random-btn music-btn">
+                            shuffle
+                        </i>
+                        <i class="material-icons previous-btn music-btn">
+                            skip_previous
+                        </i>
+                        <i class="material-icons playing-btn music-btn">
+                            play_circle_outline
+                        </i>
+                        <i class="material-icons skip-btn music-btn">
+                            skip_next
+                        </i>
+                        <i class="material-icons repeat-btn music-btn">
+                            repeat
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="player"></div>
+
+    <script src="./YTiframe.js"></script>
+    <script src="./viewcontrol.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

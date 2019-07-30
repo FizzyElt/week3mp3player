@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: white;
+  font-size: 23px;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+#player {
+  display: none;
+}
+
+#mp3player {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  height: 100vh;
+  background: #2a2a2a;
+}
+
+.left-container {
+  position: relative;
+  width: 15%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: hidden;
+}
+
+.add-album {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 15px;
+  height: 10%;
+  background: #161616;
+}
+
+.add-album h3 {
+  color: #979797;
+}
+
+.add-album button {
+  height: 100%;
+  width: 35px;
+}
+
+.add-album i {
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+  font-size: 30px;
+  color: #979797;
+}
+
+.album-list {
+  width: calc(100% + 17px);
+  height: 55%;
+  background: #222222;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.album-item {
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  padding: 8px 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.album-item span {
+  font-size: 20px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.album-item:hover {
+  background: -webkit-gradient(linear, right top, left top, from(#ffa883), to(#3927ff));
+  background: linear-gradient(270deg, #ffa883 0%, #3927ff 100%);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.album-active {
+  background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
+  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+
+.current-music-box {
+  position: absolute;
+  width: calc(100% - 50px);
+  height: calc(35% - 40px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 25px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  top: 100%;
+  background-image: url("https://i.ytimg.com/vi/zA0tk8iN80U/mqdefault.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-box-shadow: inset 30px 80px 150px #000000;
+          box-shadow: inset 30px 80px 150px #000000;
+}
+
+.current-music-box div h3 {
+  font-size: 26px;
+}
+
+.current-music-box div span {
+  text-shadow: 0 0 10px #2e2e2e;
+  color: #959595;
+}
+
+.right-container {
+  width: 85%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  overflow: hidden;
+}
+
+.album-content-container {
+  width: 100%;
+  height: 35%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-image: url("https://i.ytimg.com/vi/zA0tk8iN80U/mqdefault.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-shadow: inset 0 0 60px 250px rgba(0, 0, 0, 0.7);
+          box-shadow: inset 0 0 60px 250px rgba(0, 0, 0, 0.7);
+}
+
+.album-content-container i {
+  cursor: pointer;
+  position: absolute;
+  padding: 15px;
+  font-size: 30px;
+}
+
+.album-detail-content {
+  margin-left: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+}
+
+.album-detail-content > img {
+  height: 180px;
+  margin-right: 20px;
+}
+
+.album-name {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.album-create-day {
+  font-size: 15px;
+}
+
+.music-list-container {
+  width: calc(100% - 10%);
+  height: calc(50% - 40px);
+  margin: 40px 5% 0 5%;
+  overflow: hidden;
+}
+
+.music-list {
+  width: calc(100% + 17px);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.music-item {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 8px 15px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.music-item:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.music-item:nth-child(odd) {
+  background: #222222;
+}
+
+.music-index {
+  width: 5%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.music-name {
+  width: 50%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.music-time {
+  width: 35%;
+  text-align: center;
+}
+
+.music-btn i {
+  cursor: pointer;
+  font-size: 35px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #7a7a7a;
+}
+
+.music-btn i:hover {
+  color: #6241e6;
+}
+
+.music-active {
+  background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
+  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+
+.player-container {
+  height: 15%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.slider-bar {
+  position: relative;
+  height: 8px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  background: rgba(54, 54, 54, 0.8);
+}
+
+.slider-btn {
+  cursor: pointer;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: white;
+  -webkit-transform: translateY(-6px) translateX(-10px);
+          transform: translateY(-6px) translateX(-10px);
+}
+
+.music-control-box {
+  width: 100%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.music-control-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.random-btn,
+.repeat-btn {
+  font-size: 35px;
+}
+
+.previous-btn,
+.skip-btn {
+  font-size: 70px;
+}
+
+.playing-btn {
+  font-size: 80px;
+}
+
+.music-btn {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: #474747;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.music-btn:hover {
+  color: #6241e6;
+}
+
+.music-btn-active {
+  color: #6241e6;
+}
+/*# sourceMappingURL=style.css.map */
