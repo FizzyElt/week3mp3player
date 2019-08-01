@@ -58,6 +58,7 @@ function crateMusicItem(musicData, index) {
     let time = musicTimeLenth(musicData.videoDuration);
     let ele = document.createElement('LI');
     ele.setAttribute('class', 'music-item');
+    ele.setAttribute('data-index',index);
     if (currentMusicIndex === index) {
         ele.classList.add('music-active');
     }
@@ -123,4 +124,5 @@ window.onload = function () {
     playingBtn.addEventListener('click', musicPlayToggle);
     skipBtn.addEventListener('click', skipMusic);
     previousBtn.addEventListener('click', previousMusic);
+    musicList.addEventListener('click',musicSwich);
 }

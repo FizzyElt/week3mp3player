@@ -4,6 +4,7 @@ let screenMouseUp = document.querySelector('.right-container');
 let playingBtn = document.querySelector('.playing-btn');
 let skipBtn = document.querySelector('.skip-btn');
 let previousBtn = document.querySelector('.previous-btn');
+let musicList = document.querySelector('.music-list');
 let videoIdList = ['zA0tk8iN80U', 'sH8H3z9FAj4', 'ZJiAtRmNg6c', '-EDhOHxUYBI'];
 let videoList = [
     {
@@ -84,17 +85,16 @@ function sliderMouseUp(e) {
         musicCurrentTime = getTotalLen * current;
         isMouseDown = false;
     }
-    if(playing===false){
+    if (playing === false) {
         player.pauseVideo();
     }
-    console.log(player.getCurrentTime());
 }
 function musicPlayToggle(e) {
     playing = !playing;
     if (playing === true) {
         e.target.innerText = 'pause_circle_outline';
         player.playVideo();
-        timer=setInterval(timerEvent(),800);
+        timer = setInterval(timerEvent(), 800);
     }
     else {
         player.pauseVideo();
@@ -126,10 +126,27 @@ function previousMusic() {
     }
     videoChange(videoIdList[currentMusicIndex]);
 }
-function timerEvent(){
-    let time=player.getCurrentTime();
-    let totalTime=videoList[currentMusicIndex].videoDuration.total;
-    let getPercent=(time/totalTime)*100;
+function musicSwich(e) { //列表點選音樂事件
+    let elementSelect = e.path.find((ele) => {  //尋找目標li music-item
+        return ele.className == 'music-item';
+    });
+    //   
+    console.log(elementSelect);
+    if (elementSelect !== undefined) {  //是否有找到目標li
+        let getIndex = elementSelect.dataset.index;//拿取dataset的index
+        viewChange(currentMusicIndex, Number(getIndex));
+        currentMusicIndex=Number(getIndex);
+        videoChange(videoIdList[getIndex]);
+    }
+
+    /*if(classList.contains('music-name')||classList.contains('music-time')||classList.contains('music-index')){
+
+    }*/
+}
+function timerEvent() {
+    let time = player.getCurrentTime();
+    let totalTime = videoList[currentMusicIndex].videoDuration.total;
+    let getPercent = (time / totalTime) * 100;
     sliderBtn.style.left = String(getPercent) + '%';
     return timerEvent;
 }
