@@ -13,10 +13,14 @@ button {
   border: none;
 }
 
-#player {
-  display: none;
-}
-
+/*#player{
+  position: absolute;
+  width: 0;
+  height: 0;
+  //display: none;
+  border: 0;
+  border: none;
+}*/
 #mp3player {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -149,6 +153,11 @@ button {
   color: #959595;
 }
 
+.current-music-name {
+  height: 50%;
+  overflow: hidden;
+}
+
 .right-container {
   width: 85%;
   height: 100%;
@@ -260,6 +269,11 @@ button {
   background: #222222;
 }
 
+.music-item.music-active {
+  background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
+  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+
 .music-index {
   width: 5%;
   font-size: 20px;
@@ -267,31 +281,38 @@ button {
 }
 
 .music-name {
-  width: 50%;
-  text-align: center;
+  width: 75%;
+  white-space: nowrap;
   overflow: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.music-name:hover {
+  overflow: visible;
 }
 
 .music-time {
-  width: 35%;
+  width: 10%;
   text-align: center;
 }
 
-.music-btn i {
+.music-other-btn {
+  width: 10%;
+}
+
+.music-other-btn i {
   cursor: pointer;
   font-size: 35px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   color: #7a7a7a;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
 }
 
-.music-btn i:hover {
+.music-other-btn i:hover {
   color: #6241e6;
-}
-
-.music-active {
-  background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
-  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
 }
 
 .player-container {

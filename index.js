@@ -1,6 +1,5 @@
 const apiKey = 'AIzaSyBcv9DZaXUfh9WiUYDI3DFlMrmy44csZog';
-let videoIdList = ['zA0tk8iN80U', 'eAVwp7rg4m8', 'PieH8drGqME', '5f0j4wMr4UI'];
-let videoList = [];
+
 function getInitVideoList(idList = []) {
     idList.forEach(element => {
         getVideoData(element);
@@ -9,16 +8,16 @@ function getInitVideoList(idList = []) {
 function getVideoData(id = '') {
     const videoUrl =
         'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' + id + '&key=' + apiKey;
-    axios.get(videoUrl).then(res=>{
-        let item=res.data.items[0];
+    axios.get(videoUrl).then(res => {
+        let item = res.data.items[0];
         videoList.push({
-        videoId: item.id,
-        title: item.snippet.title,
-        largeImg: item.snippet.thumbnails.maxres,
-        smallImg: item.snippet.thumbnails.medium,
-        videoDuration: VideoDurationCalc(item.contentDetails.duration)
-    });
-    }).catch(err=>{})
+            videoId: item.id,
+            title: item.snippet.title,
+            largeImg: item.snippet.thumbnails.maxres.url,
+            smallImg: item.snippet.thumbnails.medium.url,
+            videoDuration: VideoDurationCalc(item.contentDetails.duration)
+        });
+    }).catch(err => { })
 }
 function VideoDurationCalc(text = '') {
     let hours = 0,
@@ -55,7 +54,73 @@ function VideoDurationCalc(text = '') {
         total: total
     }
 }
+function crateMusicItem(musicData, index) {
+    let time = musicTimeLenth(musicData.videoDuration);
+    let ele = document.createElement('LI');
+    ele.setAttribute('class', 'music-item');
+    if (currentMusicIndex === index) {
+        ele.classList.add('music-active');
+    }
+    ele.innerHTML = `<h3 class="music-index">${index + 1}</h3>
+    <span class="music-name">
+        ${musicData.title}
+    </span>
+    <span class="music-time">
+        ${time}
+    </span>
+    <div class="music-other-btn">
+        <i class="material-icons">
+            add
+        </i>
+        <i class="material-icons">
+            remove
+        </i>
+    </div>`
+    document.querySelector('.music-list').appendChild(ele);
+}
+function musicTimeLenth(data) {
+    let hourTime = '',
+        minTime = '',
+        secondTime = '';
+    if (data.hours === 0) {
+        hourTime = '';
+    } else {
+        hourTime = String(data.hours) + ':';
+    }
+    if (data.mins === 0) {
+        minTime = ''
+    } else {
+        minTime = String(data.mins) + ':'
+    }
+    if (data.seconds < 10) {
+        secondTime = '0' + String(data.seconds);
+    } else {
+        secondTime = String(data.seconds);
+    }
+    return hourTime + minTime + secondTime;
+}
+function currentIndexCheck(index) {
+    let listLen = videoIdList.length - 1;
+    if (index < 0) {
+        currentMusicIndex = listLen;
+        return false;
+    } else if (index > listLen) {
+        currentMusicIndex = 0;
+        return false;
+    } else {
+        return true;
+    }
+}
 //getInitVideoList(videoIdList);
 window.onload = function () {
-    console.log(videoList);
+
+    videoList.forEach(function (e, index) {
+        crateMusicItem(e, index);
+    });
+    sliderBtn.addEventListener('mousedown', sliderMouseDown);
+    screenMouseUp.addEventListener('mouseup', sliderMouseUp);
+    screenMouseUp.addEventListener('mousemove', sliderMouseMove);
+    playingBtn.addEventListener('click', musicPlayToggle);
+    skipBtn.addEventListener('click', skipMusic);
+    previousBtn.addEventListener('click', previousMusic);
 }

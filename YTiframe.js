@@ -10,33 +10,38 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'rFl5aK6n_FQ',
+        height: '300',
+        width: '600',
+        videoId: videoIdList[currentMusicIndex],
+        host: 'https://www.youtube.com',
         events: {
-            //'onReady': onPlayerReady,
+            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         }
     });
 }
 
 // 4. The API will call this function when the video player is ready.
-function onPlayerReady() {
-    if (play) {
-        player.playVideo();
-    } else {
-        player.pauseVideo();
-    }
-}
 
+function onPlayerReady(e){
+}
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
-var done = false;
 function onPlayerStateChange(event) {
-    console.log(event.data == YT.PlayerState.PLAYING);
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        done = true;
+    if (event.data == YT.PlayerState.PLAYING) {
+        console.log(player.getCurrentTime());
+    }
+    if(event.data==YT.PlayerState.ENDED){
+        currentMusicIndex++;
+        if(currentIndexCheck(currentIndexCheck)){
+            videoChange(videoIdList[currentMusicIndex]);
+        }
+        
+    }
+    if(event.data==YT.PlayerState.PAUSED){
+        musicCurrentTime=player.getCurrentTime();
+        console.log(musicCurrentTime);
     }
 }
 function stopVideo() {
@@ -45,8 +50,22 @@ function stopVideo() {
 function pauseVideo() {
     player.pauseVideo();
 }
-function nextVideo(){
-    player.loadVideoById('sH8H3z9FAj4',0);
-    console.log(player.videoId);
-    onPlayerReady();
+function playVideo(){
+    document.getElementById('player').playVideo;
+}
+function videoChange(id=''){
+    player.loadVideoById(id,0);
+    if(playing!==true){
+     player.pauseVideo();
+    }
+}
+function viewChange(index,nextIndex){
+    console.log('in')
+    document.querySelector('.music-item:nth-child('+(index+1)+')').classList.remove('music-active');
+    document.querySelector('.music-item:nth-child('+(nextIndex+1)+')').classList.add('music-active');
+    document.querySelector('.current-music-name').innerHTML=videoList[nextIndex].title;
+    document.querySelector('.current-music-box').style.backgroundImage="url("+videoList[nextIndex].smallImg+")";
+    document.getElementById('music-img').src=videoList[nextIndex].smallImg;
+    document.querySelector('.album-content-container').style.backgroundImage="url("+videoList[nextIndex].largeImg+")";
+    sliderBtn.style.left='0%';
 }

@@ -11,9 +11,14 @@ button {
   background: none;
   border: none;
 }
-#player {
-  display: none;
-}
+/*#player{
+  position: absolute;
+  width: 0;
+  height: 0;
+  //display: none;
+  border: 0;
+  border: none;
+}*/
 #mp3player {
   display: flex;
   justify-content: flex-start;
@@ -105,6 +110,10 @@ button {
     }
   }
 }
+.current-music-name{
+  height: 50%;
+  overflow: hidden;
+}
 .right-container {
   width: 85%;
   height: 100%;
@@ -162,6 +171,7 @@ button {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  
 }
 .music-item {
   cursor: pointer;
@@ -177,34 +187,41 @@ button {
 .music-item:nth-child(odd) {
   background: #222222;
 }
+.music-item.music-active {
+  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
 .music-index {
   width: 5%;
   font-size: 20px;
   text-align: center;
 }
 .music-name {
-  width: 50%;
-  text-align: center;
+  width: 75%;
+  white-space: nowrap;
   overflow: hidden;
+  transition: all 0.5s;
+}
+.music-name:hover{
+  overflow: visible;
 }
 .music-time {
-  width: 35%;
+  width: 10%;
   text-align: center;
 }
-.music-btn {
+.music-other-btn {
+  width: 10%;
   i {
     cursor: pointer;
     font-size: 35px;
     transition: 0.2s;
     color: #7a7a7a;
+    transform: translateY(4px);
   }
   i:hover {
     color: #6241e6;
   }
 }
-.music-active {
-  background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
-}
+
 .player-container {
   height: 15%;
   width: 100%;
