@@ -5,6 +5,10 @@ let playingBtn = document.querySelector('.playing-btn');
 let skipBtn = document.querySelector('.skip-btn');
 let previousBtn = document.querySelector('.previous-btn');
 let musicList = document.querySelector('.music-list');
+let musicLoopBtn=document.querySelector('.repeat-btn');
+let musicRandomBtn=document.querySelector('.random-btn');
+let mutedControlBtn=document.querySelector('.volume-control-btn');
+let musicVolumeControl=document.querySelector('.volume-control-slider');
 let videoIdList = ['zA0tk8iN80U', 'sH8H3z9FAj4', 'ZJiAtRmNg6c', '-EDhOHxUYBI'];
 let videoList = [
     {
@@ -62,8 +66,9 @@ let playing = false,
     isMouseDown = false,
     musicCurrentTime = 0,
     timer,
-    sliderBarWidth = sliderBar.clientWidth,
-    leftContainerWidth = document.querySelector('.left-container').clientWidth;
+    sliderBarWidth = sliderBar.clientWidth;
+let isMuted=false;
+let leftContainerWidth = document.querySelector('.left-container').clientWidth
 function sliderMouseDown(e) {
     isMouseDown = true;
 }
@@ -82,7 +87,7 @@ function sliderMouseUp(e) {
 
     if (isMouseDown === true) {
         player.seekTo(getTotalLen * current);
-        musicCurrentTime = getTotalLen * current;
+        //musicCurrentTime = getTotalLen * current;
         isMouseDown = false;
     }
     if (playing === false) {
@@ -131,17 +136,65 @@ function musicSwich(e) { //列表點選音樂事件
         return ele.className == 'music-item';
     });
     //   
-    console.log(elementSelect);
     if (elementSelect !== undefined) {  //是否有找到目標li
         let getIndex = elementSelect.dataset.index;//拿取dataset的index
         viewChange(currentMusicIndex, Number(getIndex));
         currentMusicIndex=Number(getIndex);
         videoChange(videoIdList[getIndex]);
     }
-
-    /*if(classList.contains('music-name')||classList.contains('music-time')||classList.contains('music-index')){
-
-    }*/
+}
+function musicLoopToggle(){
+    musicLoop=!musicLoop;
+    if(musicLoop===true){
+        musicLoopBtn.style.color='#6241e6';
+    }
+    else{
+        musicLoopBtn.style.color='#474747';
+    }
+    if(musicRandom===true){
+        musicRandom=!musicRandom;
+        musicRandomBtn.style.color='#474747';
+    }
+}
+function musicRandomToggle(){
+    musicRandom=!musicRandom;
+    if(musicRandom===true){
+        musicRandomBtn.style.color='#6241e6';
+    }
+    else{
+        musicRandomBtn.style.color='#474747';
+    }
+    if(musicLoop===true){
+        musicLoop=!musicLoop;
+        musicLoopBtn.style.color='#474747';
+    }
+}
+function controlVolume(e){
+    let clickElement=e.target.className;
+    let offsetX=e.offsetX;
+    let volume=0;
+    if(clickElement==='volume-control-slider'){
+        volume=Math.round(offsetX/120*100);
+        musicVolumeChange(volume);
+    }else if(clickElement==='volume-control-bar'){
+        let currentVolume=player.getVolume()/100*120;
+        volume=Math.round((currentVolume-(120-offsetX))/120*100);
+        musicVolumeChange(volume);    
+    }
+}
+function muteToggle(e){
+    isMuted=!isMuted;
+    if(!isMuted){
+        e.target.innerText='volume_up';
+        player.unMute();
+    }else{
+        e.target.innerText='volume_off';
+        player.mute();
+    }
+}
+function musicVolumeChange(volume=50){
+    player.setVolume(volume);
+    document.querySelector('.volume-control-bar').style.left=volume-100+'%';
 }
 function timerEvent() {
     let time = player.getCurrentTime();

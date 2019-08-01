@@ -11,14 +11,15 @@ button {
   background: none;
   border: none;
 }
-/*#player{
+#player{
   position: absolute;
   width: 0;
   height: 0;
   //display: none;
   border: 0;
   border: none;
-}*/
+  z-index: -999;
+}
 #mp3player {
   display: flex;
   justify-content: flex-start;
@@ -72,18 +73,26 @@ button {
   padding: 8px 15px;
   transition: all 0.3s;
   z-index: 1;
+ 
   span {
     font-size: 20px;
     width: 100%;
     overflow: hidden;
+    color: #868686;
   }
 }
 .album-item:hover {
   background: linear-gradient(270deg, #ffa883 0%, #3927ff 100%);
   transform: scale(1.05);
 }
+.album-item:hover span{
+  color: white;
+}
 .album-active {
   background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+  span{
+    color: white;
+  }
 }
 .current-music-box {
   position: absolute;
@@ -181,14 +190,16 @@ button {
   padding: 8px 15px;
   transition: 0.3s;
 }
-.music-item:hover {
-  transform: scale(1.02);
-}
+
 .music-item:nth-child(odd) {
   background: #222222;
 }
 .music-item.music-active {
   background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+.music-item:hover {
+  transform: scale(1.02);
+  background: linear-gradient(270deg, #ffa883 0%, #3927ff 100%);
 }
 .music-index {
   width: 5%;
@@ -258,6 +269,15 @@ button {
   justify-content: center;
   align-items: center;
 }
+.music-btn {
+  user-select: none;
+  cursor: pointer;
+  color: #474747;
+  transition: 0.2s;
+}
+.music-btn:hover {
+  color: #6241e6;
+}
 .random-btn,
 .repeat-btn {
   font-size: 35px;
@@ -269,15 +289,34 @@ button {
 .playing-btn {
   font-size: 80px;
 }
-.music-btn {
-  user-select: none;
+.sounds-control-box{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 100px;
+}
+.volume-control-btn{
   cursor: pointer;
+  margin-right: 10px;
+  font-size: 30px;
   color: #474747;
-  transition: 0.2s;
 }
-.music-btn:hover {
-  color: #6241e6;
+.volume-control-bar{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #888585;
+  left: -50%;
 }
-.music-btn-active {
-  color: #6241e6;
+
+.volume-control-slider{
+  position: relative;
+  cursor: pointer;
+  height: 8px;
+  width: 120px;
+  background: #1d1b1b;
+  border-radius: 8px;
+  overflow: hidden;
 }
+

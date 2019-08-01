@@ -125,4 +125,9 @@ window.onload = function () {
     skipBtn.addEventListener('click', skipMusic);
     previousBtn.addEventListener('click', previousMusic);
     musicList.addEventListener('click',musicSwich);
+    musicLoopBtn.addEventListener('click',musicLoopToggle);
+    musicRandomBtn.addEventListener('click',musicRandomToggle);
+    musicVolumeControl.addEventListener('click',controlVolume);
+    mutedControlBtn.addEventListener('click',muteToggle);
+    musicVolumeChange();
 }

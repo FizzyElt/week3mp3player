@@ -13,14 +13,15 @@ button {
   border: none;
 }
 
-/*#player{
+#player {
   position: absolute;
   width: 0;
   height: 0;
-  //display: none;
   border: 0;
   border: none;
-}*/
+  z-index: -999;
+}
+
 #mp3player {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -104,6 +105,7 @@ button {
   font-size: 20px;
   width: 100%;
   overflow: hidden;
+  color: #868686;
 }
 
 .album-item:hover {
@@ -113,9 +115,17 @@ button {
           transform: scale(1.05);
 }
 
+.album-item:hover span {
+  color: white;
+}
+
 .album-active {
   background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
   background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+
+.album-active span {
+  color: white;
 }
 
 .current-music-box {
@@ -260,11 +270,6 @@ button {
   transition: 0.3s;
 }
 
-.music-item:hover {
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-}
-
 .music-item:nth-child(odd) {
   background: #222222;
 }
@@ -272,6 +277,13 @@ button {
 .music-item.music-active {
   background: -webkit-gradient(linear, right top, left top, from(#ffa88348), to(#3927ff2f));
   background: linear-gradient(270deg, #ffa88348 0%, #3927ff2f 100%);
+}
+
+.music-item:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  background: -webkit-gradient(linear, right top, left top, from(#ffa883), to(#3927ff));
+  background: linear-gradient(270deg, #ffa883 0%, #3927ff 100%);
 }
 
 .music-index {
@@ -378,20 +390,6 @@ button {
           align-items: center;
 }
 
-.random-btn,
-.repeat-btn {
-  font-size: 35px;
-}
-
-.previous-btn,
-.skip-btn {
-  font-size: 70px;
-}
-
-.playing-btn {
-  font-size: 80px;
-}
-
 .music-btn {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -407,7 +405,54 @@ button {
   color: #6241e6;
 }
 
-.music-btn-active {
-  color: #6241e6;
+.random-btn,
+.repeat-btn {
+  font-size: 35px;
+}
+
+.previous-btn,
+.skip-btn {
+  font-size: 70px;
+}
+
+.playing-btn {
+  font-size: 80px;
+}
+
+.sounds-control-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  right: 100px;
+}
+
+.volume-control-btn {
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 30px;
+  color: #474747;
+}
+
+.volume-control-bar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #888585;
+  left: -50%;
+}
+
+.volume-control-slider {
+  position: relative;
+  cursor: pointer;
+  height: 8px;
+  width: 120px;
+  background: #1d1b1b;
+  border-radius: 8px;
+  overflow: hidden;
 }
 /*# sourceMappingURL=style.css.map */
