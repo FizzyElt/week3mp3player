@@ -196,7 +196,7 @@ function muteToggle(e) {
         player.mute();
     }
 }
-function musicVolumeChange(volume = 50) {
+function musicVolumeChange(volume = 30) {
     player.setVolume(volume);
     document.querySelector('.volume-control-bar').style.left = volume - 100 + '%';
 }
